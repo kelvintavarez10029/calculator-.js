@@ -1,34 +1,32 @@
-
-
 const readline = require('readline-sync');
-const calculator = require('./calculator');
+const calculator = require('./calculator'); // Import calculator function
 
-
-
-const operation = readline.question('Enter the operation (+, -, *, /): ');
-
-if (!['+', '-', '*', '/'].includes(operation)) {
-    console.log("That is not a valid operation.");
-   process.exit();
+function getUserInput(promptMessage) {
+    let value = readline.question(promptMessage);
+    value = Number(value);
+    
+    if (isNaN(value)) {
+        console.log('Please enter a valid number.');
+        return getUserInput(promptMessage); 
+    }
+    return value;
 }
 
-let num1 = Number(readline.question('Enter the first number: '));
-if (isNaN(num1)) {
-    console.log('Please enter a valid number');
-    process.exit();
-  
+function getOperation() {
+    let operation = readline.question('Enter the operation (+, -, *, /): ');
+
+    if (!['+', '-', '*', '/'].includes(operation)) {
+        console.log("That is not a valid operation.");
+        return getOperation(); 
+    }
+
+    return operation;
 }
 
-console.log(`The first number is: ${num1}`);
-
-let num2 = Number(readline.question('Enter the second number: '));
-if (isNaN(num2)) {
-    console.log('Please enter a valid number');
-    process.exit();
-}
-
-console.log(`The second number is: ${num2}`);
+const operation = getOperation();
+const num1 = getUserInput('Enter the first number: ');
+const num2 = getUserInput('Enter the second number: ');
 
 const result = calculator(operation, num1, num2);
-
 console.log(`The result is: ${result}`);
+

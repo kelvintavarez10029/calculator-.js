@@ -1,22 +1,13 @@
-
 function calculator(operation, num1, num2) {
-    switch (operation) {
+  switch (operation) {
+      case '+': return num1 + num2;
+      case '-': return num1 - num2;
+      case '*': return num1 * num2;
+      case '/': return num2 !== 0 ? num1 / num2 : "Cannot divide by zero!";
+      default: return "Invalid operation";
+  }
+}
 
-        case '+':
-            return num1 + num2;
-            break;
-        case '-':
-            return num1 - num2;
-            break;
+module.exports = calculator;
 
-        case '*':
-            return num1 * num2;
-            break;
 
-        case '/':
-            return num1 / num2;
-            break;
-
-        default:
-    }}
-    module.exports = calculator;
